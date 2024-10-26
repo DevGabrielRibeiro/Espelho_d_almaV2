@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Espelho D'Alma</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-light p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="imgs/logo.png" alt="Logo" >
+                <h1 class="ml-3"> <a href="index.html">Espelho D'Alma</a></h1>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.html">Agendamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastrar</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <form>
+            <h2 class="title-login">Acessar conta</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required placeholder="Digite seu email">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" required placeholder="Digite sua senha">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="manterConectado">
+                <label class="form-check-label" for="manterConectado">Manter conectado</label>
+                <a href="#" class="text-muted">Esqueceu sua senha?</a>
+            </div>
+            <div class="btn-login">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light p-3 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p>&copy; 2024 Nome do Site. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-4">
+                    <p><a href="#">Termos de Uso</a> | <a href="#">Quem Somos</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

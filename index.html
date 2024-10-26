@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
+    <link rel="stylesheet" href="style.css">
+    <title>Espelho D'Alma</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-light p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="imgs/logo.png" alt="Logo">
+                <h1 class="ml-3"> <a href="index.html">Espelho D'Alma</a></h1>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.html">Agendamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastrar</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container my-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="imgs/banner.png" class="d-block w-100" alt="Banner 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="imgs/banner3.png" class="d-block w-100" alt="Banner 2">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+        </div>
+        <section class="my-5">
+            <h2 class="card-title">Como marcar seu agendamento</h2>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="card step">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-circle fa-3x mb-3"></i>
+                        <p class="card-text">Entrar no site e fazer login ou cadastro.</p>
+                    </div>
+                </div>
+                <div class="card step">
+                    <div class="card-body text-center">
+                        <i class="fas fa-calendar-alt fa-3x mb-3"></i>
+                        <p class="card-text">Acessar a página de agendamento através do menu.</p>
+                    </div>
+                </div>
+                <div class="card step">
+                    <div class="card-body text-center">
+                        <i class="fas fa-clock fa-3x mb-3"></i>
+                        <p class="card-text">Escolher a data e horário disponíveis.</p>
+                    </div>
+                </div>
+                <div class="card step">
+                    <div class="card-body text-center">
+                        <i class="fas fa-check-circle fa-3x mb-3"></i>
+                        <p class="card-text">Confirmar o agendamento e aguardar a confirmação por email.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light p-3 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p>&copy; 2024 Nome do Site. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-4">
+                    <p><a href="#">Termos de Uso</a> | <a href="#">Quem Somos</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

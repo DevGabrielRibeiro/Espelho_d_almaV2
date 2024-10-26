@@ -1,0 +1,182 @@
+/* Estilos para o Body */
+body {
+  background: linear-gradient(135deg, #b9c3cc, #a866e2); /* Gradiente de fundo */
+}
+
+/* Estilos para o header */
+header {
+  background-color: #e3f2fd; /* Cor de fundo do cabeçalho */
+  border-bottom: 1px solid #bbdefb; /* Borda inferior do cabeçalho */
+  padding: 15px 0; /* Espaçamento interno vertical do cabeçalho */
+}
+
+header h1 {
+  font-size: 2rem; /* Tamanho da fonte do título */
+  margin: 0; /* Margem do título */
+  color: #0d47a1; /* Cor do texto do título */
+}
+
+header img {
+  width: 60px; /* Largura da imagem */
+  height: 60px; /* Altura da imagem */
+  object-fit: cover; /* Ajuste da imagem para cobrir o contêiner */
+}
+
+/* Estilos para a navegação */
+.nav-link {
+  color: #0d47a1; /* Cor do texto do link */
+  margin: 0 10px; /* Margem horizontal dos links */
+}
+
+.nav-link:hover {
+  color: #1976d2; /* Cor do texto do link ao passar o mouse */
+  text-decoration: underline; /* Sublinhado ao passar o mouse */
+  transition: color 0.3s ease; /* Transição suave da cor */
+}
+
+/* Estilos para o main */
+main {
+  padding-top: 30px; /* Espaçamento interno superior do main */
+  padding-bottom: 30px; /* Espaçamento interno inferior do main */
+}
+
+main h2 {
+  font-size: 2rem; /* Tamanho da fonte do título */
+  color: #0d47a1; /* Cor do texto do título */
+}
+
+main p {
+  font-size: 1rem; /* Tamanho da fonte do parágrafo */
+  color: #455a64; /* Cor do texto do parágrafo */
+}
+
+/* Estilos para o guia de agendamento */
+.step {
+  margin-bottom: 20px; /* Margem inferior dos passos */
+  background-color: #f0f4c3; /* Cor pastel de fundo */
+  flex: 1 0 calc(25% - 1rem); /* Largura flexível com espaçamento */
+  margin-right: 1rem; /* Espaço entre os cartões */
+  margin-left: 1rem; /* Espaço entre os cartões */
+}
+
+.step .card-body {
+  padding: 20px; /* Espaçamento interno dos cartões */
+}
+
+.card-title {
+  font-size: 2rem; /* Tamanho da fonte do título do cartão */
+  color: #0d47a1; /* Cor do texto do título do cartão */
+  text-align: center; /* Alinhamento centralizado do texto */
+  margin-bottom: 30px; /* Margem inferior do título do cartão */
+}
+
+.step i {
+  color: #677fa1; /* Cor dos ícones */
+}
+
+.step p {
+  margin: 0; /* Margem do parágrafo */
+  font-size: 1.1rem; /* Tamanho da fonte do parágrafo */
+  color: #455a64; /* Cor do texto do parágrafo */
+  text-align: center; /* Alinhamento centralizado do texto */
+}
+
+/* Estilos para o carrossel */
+.carousel-inner img {
+  height: 400px; /* Altura das imagens do carrossel */
+  object-fit: cover; /* Ajuste das imagens para cobrir o contêiner */
+}
+
+/* Estilos para o footer */
+footer {
+  background-color: #e3f2fd; /* Cor de fundo do rodapé */
+  border-top: 1px solid #bbdefb; /* Borda superior do rodapé */
+  padding: 15px 0; /* Espaçamento interno vertical do rodapé */
+  color: #455a64; /* Cor do texto do rodapé */
+}
+
+footer p {
+  margin: 0; /* Margem dos parágrafos do rodapé */
+  font-size: 0.875rem; /* Tamanho da fonte dos parágrafos do rodapé */
+}
+
+footer a {
+  color: #0d47a1; /* Cor dos links no rodapé */
+  text-decoration: none; /* Remoção da sublinha dos links */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Sublinhado ao passar o mouse nos links */
+}
+
+/* Estilos para o formulário de cadastro */
+form {
+  width: 70%; /* Largura do formulário definida como 70% do container pai */
+  margin: 0 auto; /* Centraliza o formulário horizontalmente */
+  background-color: #f8f9fa; /* Cor de fundo clara para o formulário */
+  padding: 40px; /* Aumentei o espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
+}
+
+.title-cadastro {
+  color: #0d47a1; /* Cor do título em azul escuro */
+  margin-bottom: 30px; /* Espaçamento inferior do título */
+  text-align: center; /* Centraliza o texto do título */
+}
+
+.btn-primary {
+  width: 30%; /* Largura do botão definida como 30% do container pai */
+  background-color: #0d47a1; /* Cor de fundo azul escuro */
+  border-color: #0d47a1; /* Cor da borda azul escuro */
+  cursor: pointer; /* Altera o cursor para indicar que é um botão clicável */
+}
+
+.btn-primary:hover {
+  background-color: #1976d2; /* Cor de fundo do botão ao passar o mouse */
+  border-color: #1976d2; /* Cor da borda do botão ao passar o mouse */
+}
+
+.btn-cadastro {
+  display: flex; /* Exibe os itens em um flex container */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
+}
+
+/* Estilos para o formulário de login */
+.form-check {
+  display: flex; /* Exibe os itens em um flex container */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
+  justify-content: space-between; /* Distribui os itens com espaço entre eles */
+}
+
+.btn-login {
+  display: flex; /* Exibe os itens em um flex container */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
+}
+
+.title-login {
+  color: #0d47a1; /* Cor do título em azul escuro */
+  margin-bottom: 30px; /* Espaçamento inferior do título */
+  text-align: center; /* Centraliza o texto do título */
+}
+
+/* Estilos para o formulário de agendamento */
+.title-agendamento {
+  color: #0d47a1; /* Cor do título em azul escuro */
+  margin-bottom: 30px; /* Espaçamento inferior do título */
+  text-align: center; /* Centraliza o texto do título */
+}
+
+.card {
+  margin-bottom: 20px; /* Espaçamento inferior para separar os cartões */
+}
+
+.btn-agendamento {
+  margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
+
+}
+
