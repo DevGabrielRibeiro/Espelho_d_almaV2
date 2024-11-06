@@ -70,6 +70,10 @@ main p {
   margin-bottom: 30px; /* Margem inferior do título do cartão */
 }
 
+.card-text {
+  font-weight: bold; /* Deixar textos do card em negrito*/
+}
+
 .step i {
   color: #677fa1; /* Cor dos ícones */
 }
