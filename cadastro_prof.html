@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
     <link rel="stylesheet" href="style.css">
-    <title>Login - Espelho D'Alma</title>
+    <title>Cadastro - Espelho D'Alma</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <img src="imgs/logo.png" alt="Logo">
-                <h1 class="ml-3"> <a href="index.html">Espelho D'Alma</a></h1>
+                <h1 class="ml-3"><a href="index.html">Espelho D'Alma</a>
             </div>
             <nav>
                 <ul class="nav">
@@ -31,32 +31,49 @@
                     <li class="nav-item">
                         <a class="nav-link" href="cadastro_aluno.html">Aluno</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cadastro_prof.html">Profissional</a>
-                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container my-5" id="maintest">
+    <main class="container my-5">
         <form>
-            <h2 class="title-login">Acessar conta</h2>
+            <h2 class="title-cadastro">Cadastro do Profissional</h2>
+            <div class="form-group">
+                <label for="nomeCompleto">Nome Completo</label>
+                <input type="text" class="form-control" id="nomeCompleto" required placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" required placeholder="Digite seu CPF">
+            </div>
+            <div class="form-group">
+                <label for="crp">Codigo CRP</label>
+                <input type="text" class="form-control" id="crp" required placeholder="Digite seu codigo CRP">
+            </div>
+            <div class="form-group">
+                <label for="tempo_atuante">Tempo que atua na área</label>
+                <input type="text" class="form-control" id="tempo_atuante" required placeholder="Ex.: 10 anos">
+            </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" required placeholder="Digite seu email">
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" required placeholder="Digite sua senha">
+                <input type="password" class="form-control" id="senha" required placeholder="Digite uma senha">
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="manterConectado">
-                <label class="form-check-label" for="manterConectado">Manter conectado</label>
-                <a href="#" class="text-muted">Esqueceu sua senha?</a>
+            <div class="form-group">
+                <label for="confirmarSenha">Confirmar Senha</label>
+                <input type="password" class="form-control" id="confirmarSenha" required
+                    placeholder="Confirme sua senha">
             </div>
-            <div class="btn-login">
-                <button type="submit" class="btn btn-primary">Entrar</button>
+            <div class="form-group"></div>
+                <label for="descricao">Descreva sobre você</label>
+                <textarea name="descricao" id="descricao" placeholder="Fale um pouco sobre sua experiência..." required></textarea>
+            </div>
+            <div class="btn-cadastro">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>
     </main>
@@ -78,6 +95,7 @@
             </div>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

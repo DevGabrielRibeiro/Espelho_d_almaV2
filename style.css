@@ -152,6 +152,30 @@ form {
   margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
 }
 
+textarea {
+  width: 100%; /* Largura completa do campo */
+  height: 150px; /* Altura ajustada para dar espaço suficiente */
+  padding: 10px; /* Espaçamento interno para tornar o texto mais legível */
+  border-radius: 5px; /* Bordas arredondadas, como os outros inputs */
+  border: 1px solid #ced4da; /* Cor da borda (cor padrão para inputs no Bootstrap) */
+  background-color: #ffffff; /* Fundo branco */
+  font-size: 1rem; /* Tamanho da fonte */
+  color: #495057; /* Cor do texto */
+  resize: vertical; /* Permite que o usuário redimensione verticalmente (opcional) */
+  transition: border-color 0.3s ease; /* Transição suave ao focar */
+}
+
+/* Estilo de foco para o textarea */
+textarea:focus {
+  outline: none; /* Remove o contorno padrão */
+  border-color: #0d47a1; /* Cor de borda ao focar (cor do botão) */
+  box-shadow: 0 0 5px rgba(13, 71, 161, 0.5); /* Sombra para dar destaque ao foco */
+}
+
+textarea::placeholder {
+  color: #6c757d; /* Cor do texto do placeholder */
+}
+
 /* Estilos para o formulário de login */
 .form-check {
   display: flex; /* Exibe os itens em um flex container */
