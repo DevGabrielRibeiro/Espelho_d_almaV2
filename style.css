@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
+
 /* Estilos para o Body */
 body {
   background: linear-gradient(135deg, #b9c3cc, #a866e2); /* Gradiente de fundo */
@@ -14,6 +16,8 @@ header h1 {
   font-size: 2rem; /* Tamanho da fonte do título */
   margin: 0; /* Margem do título */
   color: #0d47a1; /* Cor do texto do título */
+  font-family: charm, Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 
 header img {
