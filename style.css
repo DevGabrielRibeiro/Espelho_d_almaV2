@@ -207,8 +207,21 @@ textarea::placeholder {
   margin-bottom: 20px; /* Espaçamento inferior para separar os cartões */
 }
 
+.unit-agd {
+  width: 50%;
+}
+
+.unit-agd label{
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 200px;
+}
+
+.unit-agd select {
+  cursor: pointer;
+}
+
 .btn-agendamento {
   margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
-
 }
 
