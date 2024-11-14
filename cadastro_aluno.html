@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
+    <script src="cadastro.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Cadastro - Espelho D'Alma</title>
 </head>
@@ -54,6 +55,7 @@
           <div class="form-group">
             <label for="unidade">Seleciona sua unidade senac</label>
             <select class="form-control" id="unidade" required>
+                <option value="">Carregando...</option>
             </select>
           </div>
           <div class="form-group">
@@ -65,7 +67,7 @@
             <input type="password" class="form-control" id="confirmarSenha" required placeholder="Confirme sua senha">
           </div>
           <div class="btn-cadastro">
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+              <button type="button" class="btn btn-primary" id="btn-cadastro" onclick="createUser()">Cadastrar</button>
           </div>
         </form>
       </main>
