@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
+    <script src="profissionalCreate.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Cadastro - Espelho D'Alma</title>
 </head>
@@ -37,7 +38,7 @@
     </header>
 
     <main class="container my-5">
-        <form>
+        <form class="form-cadastro">
             <h2 class="title-cadastro">Cadastro do Profissional</h2>
             <div class="form-group">
                 <label for="nomeCompleto">Nome Completo</label>
@@ -72,8 +73,9 @@
                 <label for="descricao">Descreva sobre você</label>
                 <textarea name="descricao" id="descricao" placeholder="Fale um pouco sobre sua experiência..." required></textarea>
             </div>
+            <div class="form-group" id="text-cad"></div>
             <div class="btn-cadastro">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="button" class="btn btn-primary" onclick="createProfissional()">Cadastrar</button>
             </div>
         </form>
     </main>

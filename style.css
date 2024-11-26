@@ -118,7 +118,7 @@ footer a:hover {
 }
 
 /* Estilos para o formulário de cadastro */
-form {
+.form-cadastro {
   width: 70%; /* Largura do formulário definida como 70% do container pai */
   margin: 0 auto; /* Centraliza o formulário horizontalmente */
   background-color: #f8f9fa; /* Cor de fundo clara para o formulário */
@@ -135,6 +135,11 @@ form {
   color: #0d47a1; /* Cor do título em azul escuro */
   margin-bottom: 30px; /* Espaçamento inferior do título */
   text-align: center; /* Centraliza o texto do título */
+}
+
+#text-cad {
+  text-align: center; /* Centraliza o texto do título */
+  margin-top: 10px;
 }
 
 .btn-primary {
@@ -181,10 +186,28 @@ textarea::placeholder {
 }
 
 /* Estilos para o formulário de login */
+.form-login {
+  width: 70%; /* Largura do formulário definida como 70% do container pai */
+  margin: 0 auto; /* Centraliza o formulário horizontalmente */
+  background-color: #f8f9fa; /* Cor de fundo clara para o formulário */
+  padding: 40px; /* Aumentei o espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
+  margin-bottom: 50px;
+}
+
 .form-check {
   display: flex; /* Exibe os itens em um flex container */
   align-items: center; /* Alinha os itens ao centro verticalmente */
   justify-content: space-between; /* Distribui os itens com espaço entre eles */
+}
+
+.form-group {
+  margin-bottom: 10px; /* Espaçamento inferior para separar os grupos */
+}
+
+.text-login{
+  margin-bottom: 10px; /* Espaçamento inferior para separar os grupos */
 }
 
 .btn-login {

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="shortcut icon" type="imagex/png" href="imgs/logo-p-aba.ico">
+    <script src="auth.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Login - Espelho D'Alma</title>
 </head>
@@ -40,7 +41,7 @@
     </header>
 
     <main class="container my-5" id="maintest">
-        <form>
+        <form class="form-login">
             <h2 class="title-login">Acessar conta</h2>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -50,13 +51,14 @@
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control" id="senha" required placeholder="Digite sua senha">
             </div>
+            <div class="text-login" id="text-login"></div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="manterConectado">
                 <label class="form-check-label" for="manterConectado">Manter conectado</label>
                 <a href="#" class="text-muted">Esqueceu sua senha?</a>
             </div>
             <div class="btn-login">
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="button" class="btn btn-primary" onclick="login()">Entrar</button>
             </div>
         </form>
     </main>
