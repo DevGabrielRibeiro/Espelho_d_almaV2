@@ -19,18 +19,27 @@
         <h1 class="ml-3"> <a href="index.html">Espelho D'Alma</a></h1>
       </div>
       <nav>
-        <ul class="nav">
+        <ul class="nav" id="nav-links">
           <li class="nav-item">
             <a class="nav-link" href="agendamento.html">Agendamento</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="agenda" style="display: none;">
+            <a class="nav-link" href="myAgend.html">Meus agendamentos</a>
+          </li>
+          <li class="nav-item" id="login-link">
             <a class="nav-link" href="login.html">Entrar</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="aluno-link">
             <a class="nav-link" href="cadastro_aluno.html">Aluno</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="prof-link">
             <a class="nav-link" href="cadastro_prof.html">Profissional</a>
+          </li>
+          <li class="nav-item" id="welcome-message" style="display: none;">
+            <span class="nav-link" id="welcome-text"></span>
+          </li>
+          <li class="nav-item" id="logoff" style="display: none;">
+            <a href="#" class="nav-link" id="logout-link">Sair</a>
           </li>
         </ul>
       </nav>
@@ -41,7 +50,6 @@
     <h2 class="title-agendamento">Agendamento de Consulta</h2>
 
     <div id="cards-container"></div> <!-- Container onde os cards serão inseridos dinamicamente -->
-
   </main>
 
   <footer class="bg-light p-3 text-center">
@@ -63,6 +71,49 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
+    // Função para decodificar o JWT e obter o nome do usuário
+    function decodificarJWT(token) {
+      const payload = token.split('.')[1]; // Pega a segunda parte do token (payload)
+      const decodedPayload = atob(payload); // Decodifica a base64
+      return JSON.parse(decodedPayload); // Converte de volta para objeto
+    }
+
+    // Função para verificar se o usuário está logado e exibir a mensagem
+    function verificarLogin() {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        try {
+          // Decodifica o token para obter as informações do usuário
+          const userData = decodificarJWT(token);
+          const username = userData.prof.nome || userData.user.nome; // Altere o campo conforme sua estrutura de token
+
+          // Exibe a mensagem de boas-vindas
+          document.getElementById('welcome-message').style.display = 'block';
+          document.getElementById('welcome-text').textContent = `Olá, ${username}!`;
+          document.getElementById('agenda').style.display = 'block';
+          document.getElementById('logoff').style.display = 'block';
+
+          // Oculta os links "Aluno", "Profissional" e "Entrar"
+          document.getElementById('login-link').style.display = 'none';
+          document.getElementById('aluno-link').style.display = 'none';
+          document.getElementById('prof-link').style.display = 'none';
+        } catch (error) {
+          console.error("Erro ao decodificar o token", error);
+        }
+      }
+    }
+
+    // Função para fazer logout
+    function logout() {
+      // Remove o token e outros dados do localStorage
+      localStorage.removeItem('token');
+      localStorage.removeItem('username'); // Caso você também armazene o nome ou outros dados
+
+      // Redireciona para a página de login
+      window.location.href = 'login.html';
+    }
+
     // Função para buscar os dados dos profissionais
     function fetchData() {
       fetch('http://localhost:3000/api/prof/all')
@@ -94,7 +145,6 @@
         const unitOptions = units.map(unit => {
           return `<option value="${unit.id}">${unit.nome}</option>`;  // Gerar a opção para cada unidade
         }).join('');
-
         const card = `
                     <div class="card mb-3">
                         <div class="row no-gutters">
@@ -147,6 +197,12 @@
                                         <label class="btn btn-outline-primary m-1">
                                             <input type="radio" name="horario${prof.id_profissional}" id="horario14${prof.id_profissional}"> 14:00
                                         </label>
+                                        <label class="btn btn-outline-primary m-1">
+                                            <input type="radio" name="horario${prof.id_profissional}" id="horario15${prof.id_profissional}"> 15:00
+                                        </label>
+                                        <label class="btn btn-outline-primary m-1">
+                                            <input type="radio" name="horario${prof.id_profissional}" id="horario16${prof.id_profissional}"> 16:00
+                                        </label>
                                     </div>
                                     
                                     <!-- Unidade dinâmica -->
@@ -170,8 +226,14 @@
       });
     }
 
-    // Chama a função para buscar os dados quando a página for carregada
-    window.onload = fetchData;
+    window.onload = function () {
+      fetchData();    // Carrega os dados dos profissionais
+      verificarLogin();  // Verifica o login e exibe a interface de acordo
+    };
+
+    // Adiciona o evento de clique no botão "Sair"
+    document.getElementById('logout-link').addEventListener('click', logout);
+
   </script>
 </body>
 

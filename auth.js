@@ -14,7 +14,12 @@ async function login() {
       const data = await response.json();
       const token = data.token; // Supondo que o token seja retornado em data.token
       localStorage.setItem('token', token);
-      window.location.href = "index.html";
+      const mensagem = document.getElementById('text-login');
+      mensagem.textContent = 'Login efetuado';
+      mensagem.style.color = 'green';
+      setTimeout(() => {
+        window.location.href = 'index.html';  // Redireciona para outra página
+    }, 2000);
 
       console.log('Token armazenado:', token);
     } else {
