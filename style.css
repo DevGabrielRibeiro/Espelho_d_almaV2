@@ -54,6 +54,28 @@ main p {
   color: #455a64; /* Cor do texto do parágrafo */
 }
 
+/* Estilos para o footer */
+footer {
+  background-color: #e3f2fd; /* Cor de fundo do rodapé */
+  border-top: 1px solid #bbdefb; /* Borda superior do rodapé */
+  padding: 15px 0; /* Espaçamento interno vertical do rodapé */
+  color: #455a64; /* Cor do texto do rodapé */
+}
+
+footer p {
+  margin: 0; /* Margem dos parágrafos do rodapé */
+  font-size: 0.875rem; /* Tamanho da fonte dos parágrafos do rodapé */
+}
+
+footer a {
+  color: #0d47a1; /* Cor dos links no rodapé */
+  text-decoration: none; /* Remoção da sublinha dos links */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Sublinhado ao passar o mouse nos links */
+}
+
 /* Estilos para o guia de agendamento */
 .step {
   margin-bottom: 20px; /* Margem inferior dos passos */
@@ -94,29 +116,6 @@ main p {
   height: 400px; /* Altura das imagens do carrossel */
   object-fit: cover; /* Ajuste das imagens para cobrir o contêiner */
 }
-
-/* Estilos para o footer */
-footer {
-  background-color: #e3f2fd; /* Cor de fundo do rodapé */
-  border-top: 1px solid #bbdefb; /* Borda superior do rodapé */
-  padding: 15px 0; /* Espaçamento interno vertical do rodapé */
-  color: #455a64; /* Cor do texto do rodapé */
-}
-
-footer p {
-  margin: 0; /* Margem dos parágrafos do rodapé */
-  font-size: 0.875rem; /* Tamanho da fonte dos parágrafos do rodapé */
-}
-
-footer a {
-  color: #0d47a1; /* Cor dos links no rodapé */
-  text-decoration: none; /* Remoção da sublinha dos links */
-}
-
-footer a:hover {
-  text-decoration: underline; /* Sublinhado ao passar o mouse nos links */
-}
-
 /* Estilos para o formulário de cadastro */
 .form-cadastro {
   width: 70%; /* Largura do formulário definida como 70% do container pai */
@@ -252,3 +251,56 @@ textarea::placeholder {
   margin-top: 25px; /* Espaçamento superior para separar do conteúdo acima */
 }
 
+#card{
+  justify-content: center;
+}
+
+#btn-confirmar-agend {
+  display: flex;
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  margin: 0 auto;
+}
+
+#cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilo para a mensagem de "Sem agendamento no momento" */
+.text-agendamento{
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Estilo para fixar o footer no final da página */
+.fixed-footer {
+  position: fixed;   /* Fixa o footer */
+  bottom: 0;         /* Posiciona o footer na parte inferior */
+  left: 0;           /* Alinha o footer à esquerda */
+  width: 100%;       /* Faz o footer ocupar toda a largura */
+  background-color: #e3f2fd; /* Cor de fundo do rodapé */
+  border-top: 1px solid #bbdefb; /* Borda superior */
+  padding: 15px 0;   /* Espaçamento interno */
+  z-index: 999;      /* Garante que o footer fique acima de outros elementos */
+}
+
+footer {
+  background-color: #e3f2fd; /* Cor de fundo do rodapé */
+  border-top: 1px solid #bbdefb; /* Borda superior */
+  padding: 15px 0; /* Espaçamento interno vertical do rodapé */
+  color: #455a64; /* Cor do texto do rodapé */
+}

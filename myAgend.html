@@ -48,11 +48,10 @@
 
     <main class="container my-5">
         <h2 class="title-agendamento">Meus agendamentos</h2>
-
         <div id="cards-container"></div> <!-- Container onde os cards serão inseridos dinamicamente -->
     </main>
 
-    <footer class="bg-light p-3 text-center">
+    <footer class="bg-light p-3 text-center" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -60,7 +59,7 @@
                             href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
                 </div>
                 <div class="col-md-4">
-                    <p>&copy; 2024 Nome do Site. Todos os direitos reservados.</p>
+                    <p>&copy; 2024 Espelho D'Alma. Todos os direitos reservados.</p>
                 </div>
                 <div class="col-md-4">
                     <p><a href="#">Termos de Uso</a> | <a href="#">Quem Somos</a></p>
@@ -133,8 +132,9 @@
                 .then(response => response.json())  // Processa a resposta como JSON
                 .then(data => {
                     // Aqui você pode tratar os dados recebidos da API
-                    const professionals = data.createProf;  // Exemplo: Dados dos profissionais retornados pela API
-                    fetchUnits(professionals);  // Chama a função para obter as unidades e gerar os cards
+                    const agendamento = data.agendamento.createAgendamento;  // Exemplo: Dados dos profissionais retornados pela API
+                    // Chama a função para obter as unidades e gerar os cards
+                    renderCards(agendamento);
                 })
                 .catch(error => console.error('Erro ao buscar os dados dos profissionais:', error));
 
@@ -142,32 +142,42 @@
 
         // Função para gerar os cards com unidades
         function renderCards(agendamento) {
+            console.log(agendamento);
             const container = document.getElementById('cards-container');
+           
             container.innerHTML = '';  // Limpa o conteúdo anterior (se houver)
 
-            agendamento.createAgendamento.forEach(agend => {
+            // Verifica se o array agendamento está vazio
+            if (agendamento.length === 0) {
+             footer.classList.add('fixed-footer');  // Adiciona a classe para fixar o footer
+             container.innerHTML = '<p class="text-agendamento">Sem agendamentos no momento</p>';
+             return; // Interrompe a execução da função, pois não há agendamentos para mostrar:
+         }
+            // Caso contrário, renderiza os cards
+            agendamento.forEach(agend => {
                 const card = `
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">${agend.nome_profissional}</h5>
-                                    <p class="card-text">Nome do aluno: ${agend.nome_aluno}</p>
-                                    <p class="card-text">Unidade do atendimento: ${agend.nome_unidade}</p>
-                                    <p class="card-text">Dia do atendimento: ${agend.dia_agendamento}</p>
-                                    <p class="card-text">Horario do atendimento: ${agend.horario_agendamento}</p>
-                                    <p class="card-text">Status:${agend.status_agendamento}</p>
-                                    <div class="btn-agendamento mt-3">
-                                        <button type="button" class="btn btn-primary">Confirmar Agendamento</button>
-                                    </div>
-                                </div>
+            <div class="card mb-2">
+                <div class="row no-gutters" id="card">
+                    <div class="col-md-8">
+                        <div class="card-body" id="card-info">
+                            <h5 class="card-title">${agend.nome_profissional}</h5>
+                            <p class="card-text-agend"><strong>Nome do aluno: </strong>${agend.nome_aluno}</p>
+                            <p class="card-text-agend"><strong>Unidade do atendimento: </strong>${agend.nome_unidade}</p>
+                            <p class="card-text-agend"><strong>Dia do atendimento:</strong> ${agend.dia_agendamento}</p>
+                            <p class="card-text-agend"><strong>Horario do atendimento:</strong> ${agend.horario_agendamento}</p>
+                            <p class="card-text-agend"><strong>Status:</strong> ${agend.status_agendamento}</p>
+                            <div class="btn-agendamento mt-3">
+                                <button type="button" class="btn btn-primary" id="btn-confirmar-agend">Confirmar Agendamento</button>
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            </div>
+        `;
                 container.innerHTML += card;  // Adiciona o card gerado ao container
             });
         }
+
 
         window.onload = function () {
             fetchData();    // Carrega os dados dos agendissionais

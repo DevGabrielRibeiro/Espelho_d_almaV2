@@ -66,7 +66,7 @@ function createUser(event) {
     };
 
     // Realiza a requisição POST para a API
-    fetch('http://localhost:3000/api/create', {
+    fetch('http://localhost:3000/api/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'  // Envia os dados como JSON
