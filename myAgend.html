@@ -86,8 +86,19 @@
                 try {
                     // Decodifica o token para obter as informações do usuário
                     const userData = decodificarJWT(token);
-                    const username = userData.prof.nome || userData.user.nome; // Altere o campo conforme sua estrutura de token
-                    fetchData(userData.prof.id_profissional);
+                    const username = userData.prof?.nome || userData.user?.nome; // Altere o campo conforme sua estrutura de token
+                    const idUser = userData.prof?.id_profissional || userData.user?.id_aluno;
+                    let isAluno = false; // Variável para verificar se o usuário é um aluno
+
+
+                    if(userData.user?.id_aluno) {
+                        isAluno = true;
+                    }
+                  
+                    fetchData(idUser, isAluno);
+                
+            
+                   
                     // Exibe a mensagem de boas-vindas
                     document.getElementById('welcome-message').style.display = 'block';
                     document.getElementById('welcome-text').textContent = `Olá, ${username}!`;
@@ -115,13 +126,24 @@
         }
 
         // Função para buscar os dados dos profissionais
-        function fetchData(userId) {
-
-            // Adicionando o id no endpoint ou como parâmetro, se necessário
+        function fetchData(userId, isAluno) {  // Adicionando o id no endpoint ou como parâmetro, se necessário
             // Suponha que você tenha o id do profissional (id_profissional) depois de decodificar o JWT  // Exemplo de id de profissional obtido após decodificar o JWT
 
-            // Monta a URL com o id_profissional como parâmetro de caminho
-            const url = `http://localhost:3000/api/agendamento/all/${userId}`;
+
+            let url = ""
+            // Monta a URL com o id_profissional como parâmetro de caminho  
+
+            if(isAluno === false) {
+                console.log("AQUIIIIIII");
+                 url = `http://localhost:3000/api/agendamento/all/${userId}`;
+            } else {
+                console.log("AQUI");
+                 url = `http://localhost:3000/api/agendamento/aluno/${userId}`;
+            }
+           
+
+            console.log(isAluno);
+            console.log(url);
 
             fetch(url, {
                 method: 'GET',  // Método GET, sem corpo
@@ -142,7 +164,6 @@
 
         // Função para gerar os cards com unidades
         function renderCards(agendamento) {
-            console.log(agendamento);
             const container = document.getElementById('cards-container');
            
             container.innerHTML = '';  // Limpa o conteúdo anterior (se houver)

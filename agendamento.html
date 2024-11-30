@@ -86,7 +86,7 @@
         try {
           // Decodifica o token para obter as informações do usuário
           const userData = decodificarJWT(token);
-          const username = userData.prof.nome || userData.user.nome; // Altere o campo conforme sua estrutura de token
+          const username = userData.prof?.nome || userData.user?.nome; // Altere o campo conforme sua estrutura de token
 
           // Exibe a mensagem de boas-vindas
           document.getElementById('welcome-message').style.display = 'block';
@@ -143,98 +143,158 @@
 
       professionals.forEach(prof => {
         const unitOptions = units.map(unit => {
-          return `<option value="${unit.id}">${unit.nome}</option>`;  // Gerar a opção para cada unidade
+          return `<option value="${unit.id_unidade}" id="units">${unit.nome}</option>`;
         }).join('');
-        const card = `
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="${prof.foto === 'Nenhum' ? 'imgs/default-foto.jpg' : prof.foto}" class="card-img" alt="Foto do Profissional">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">${prof.nome}</h5>
-                                    <p class="card-text">CRP ${prof.codigo_crp}</p>
-                                    <p class="card-text">CPF: ${prof.cpf}</p>
-                                    <p class="card-text">${prof.descricao}</p>
-                                    <p class="card-text">Tempo na área: ${prof.tempo_na_area}</p>
-                                    <p class="card-text">Email: <a href="mailto:${prof.email}">${prof.email}</a></p>
-                                    <h6>Dias Disponíveis</h6>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="dia${prof.id_profissional}" id="diaSegunda${prof.id_profissional}"> Segunda-feira
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="dia${prof.id_profissional}" id="diaTerca${prof.id_profissional}"> Terça-feira
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="dia${prof.id_profissional}" id="diaQuarta${prof.id_profissional}"> Quarta-feira
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="dia${prof.id_profissional}" id="diaQuinta${prof.id_profissional}"> Quinta-feira
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="dia${prof.id_profissional}" id="diaSexta${prof.id_profissional}"> Sexta-feira
-                                        </label>
-                                    </div>
-                                    <h6 class="mt-3">Horários Disponíveis</h6>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario8${prof.id_profissional}"> 08:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario9${prof.id_profissional}"> 09:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario10${prof.id_profissional}"> 10:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario11${prof.id_profissional}"> 11:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario13${prof.id_profissional}"> 13:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario14${prof.id_profissional}"> 14:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario15${prof.id_profissional}"> 15:00
-                                        </label>
-                                        <label class="btn btn-outline-primary m-1">
-                                            <input type="radio" name="horario${prof.id_profissional}" id="horario16${prof.id_profissional}"> 16:00
-                                        </label>
-                                    </div>
-                                    
-                                    <!-- Unidade dinâmica -->
-                                    <div class="unit-agd">
-                                        <label for="unidade${prof.id_profissional}">Selecione a unidade para realizar o agendamento</label>
-                                        <select class="form-control" id="unidade${prof.id_profissional}">
-                                            <option value="">Selecione a unidade</option>
-                                            ${unitOptions}  <!-- Unidades dinamicamente inseridas -->
-                                        </select>
-                                    </div>
 
-                                    <div class="btn-agendamento mt-3">
-                                        <button type="button" class="btn btn-primary">Agendar Consulta</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-        container.innerHTML += card;  // Adiciona o card gerado ao container
+        const token = localStorage.getItem('token');
+        const verificarAluno = decodificarJWT(token)
+        if (verificarAluno.cargo === 'Aluno'){
+          document.getElementById('agendarConsulta').style.display = 'none';
+        }
+
+
+        const card = `
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="${prof.foto === 'Nenhum' ? 'imgs/default-foto.jpg' : prof.foto}" class="card-img" alt="Foto do Profissional">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" id="nomeProf">${prof.nome}</h5>
+                  <p class="card-text">CRP ${prof.codigo_crp}</p>
+                  <p class="card-text">${prof.descricao}</p>
+
+                  <!-- Dias disponíveis -->
+                  <h6>Dias Disponíveis</h6>
+                  <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="dia${prof.id_profissional}" value="Segunda-feira"> Segunda-feira
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="dia${prof.id_profissional}" value="Terça-feira"> Terça-feira
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="dia${prof.id_profissional}" value="Quarta-feira"> Quarta-feira
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="dia${prof.id_profissional}" value="Quinta-feira"> Quinta-feira
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="dia${prof.id_profissional}" value="Sexta-feira"> Sexta-feira
+                    </label>
+                  </div>
+
+                  <!-- Horários disponíveis -->
+                  <h6 class="mt-3">Horários Disponíveis</h6>
+                  <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="08:00"> 08:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="09:00"> 09:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="10:00"> 10:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="11:00"> 11:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="14:00"> 14:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="15:00"> 15:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="16:00"> 16:00
+                    </label>
+                    <label class="btn btn-outline-primary m-1">
+                      <input type="radio" name="horario${prof.id_profissional}" value="17:00"> 17:00
+                    </label>
+                  </div>
+
+                  <!-- Unidades -->
+                  <div class="form-group">
+                    <label for="unitSelect${prof.id_profissional}">Selecione uma Unidade</label>
+                    <select class="form-control" id="unitSelect">
+                      ${unitOptions}
+                    </select>
+                  </div>
+                  <div class="btn-agendamento mt-3">
+                  <button type="button" class="btn btn-primary" onclick="getFormData(${prof.id_profissional})" id="agendarConsulta">Agendar Consulta</button>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.innerHTML += card;  // Adiciona o card ao container
       });
     }
 
-    window.onload = function () {
-      fetchData();    // Carrega os dados dos profissionais
-      verificarLogin();  // Verifica o login e exibe a interface de acordo
+  function getFormData(profId) {
+  // Pega o valor do dia selecionado para o profissional específico
+  const dia = document.querySelector(`input[name="dia${profId}"]:checked`);
+  const horario = document.querySelector(`input[name="horario${profId}"]:checked`);
+  const unidade = document.getElementById("unitSelect").value; 
+  const prof = document.getElementById("nomeProf").value; 
+  const token = localStorage.getItem('token');
+  const tokenId = decodificarJWT(token)
+
+  // Verifica se as opções foram selecionadas
+  if (dia && horario && unidade) {
+    const data = {
+      dia_agendamento: dia.value,  // Ex: "Segunda-feira", "Terça-feira", etc.
+      horario_agendamento: horario.value,  // Ex: "08:00", "09:00", etc.
+      fk_id_unidade: unidade,  // ID da unidade selecionada
+      fk_id_profissional: profId,
+      fk_id_aluno: tokenId.user?.id_aluno,  // TOKEN
+      status_agendamento: "Confirmação pendente",
+      email: tokenId.user?.email,
+      profissional: prof,
+      nome_aluno: tokenId.user?.nome,
     };
 
-    // Adiciona o evento de clique no botão "Sair"
-    document.getElementById('logout-link').addEventListener('click', logout);
+    console.log(data);
 
+    // Chama a função para enviar os dados para a API (Exemplo com fetch)
+    fetch('http://localhost:3000/api/agendamento', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),  // Envia os dados do agendamento
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Agendamento realizado com sucesso:', data);
+        alert('Consulta agendada com sucesso!');
+      })
+      .catch(error => {
+        console.error('Erro ao agendar consulta:', error);
+        alert('Erro ao agendar consulta. Tente novamente.');
+      });
+  } else {
+    alert('Por favor, selecione o dia, horário e unidade antes de agendar.');
+  }
+}
+
+    
+    // Evento de logout
+    document.getElementById('logout-link').addEventListener('click', function (event) {
+      event.preventDefault();
+      logout();
+    });
+
+    // Chama a função verificarLogin ao carregar a página
+    window.addEventListener('DOMContentLoaded', function () {
+      verificarLogin();  // Verifica o login assim que o DOM estiver pronto
+      fetchData();  // Carrega os dados dos profissionais
+    });
   </script>
+
 </body>
 
 </html>

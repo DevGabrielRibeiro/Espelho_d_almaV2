@@ -107,7 +107,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
                 </div>
                 <div class="col-md-4">
                     <p>&copy; 2024 Espelho D'Alma. Todos os direitos reservados.</p>
@@ -139,7 +140,7 @@
                 try {
                     // Decodifica o token para obter as informações do usuário
                     const userData = decodificarJWT(token);
-                    const username = userData.prof.nome || userData.user.nome; // Altere o campo conforme sua estrutura de token
+                    const username = userData.prof?.nome || userData.user?.nome; // Altere o campo conforme sua estrutura de token
 
                     // Exibe a mensagem de boas-vindas
                     document.getElementById('welcome-message').style.display = 'block';
