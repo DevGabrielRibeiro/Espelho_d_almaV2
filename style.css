@@ -304,3 +304,56 @@ footer {
   padding: 15px 0; /* Espaçamento interno vertical do rodapé */
   color: #455a64; /* Cor do texto do rodapé */
 }
+     
+
+
+
+
+
+
+
+.bodysobre {
+  font-family: Arial, sans-serif;
+}  
+
+.containersobre {
+  max-width: 800px;
+  margin: 50px auto;
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(14, 1, 1, 0.1);
+}
+
+.h1sobre, .h2sobre {
+  text-align: center;
+  color: #a866e2;
+}
+
+.psobre{
+  line-height: 1.6;
+  color: #555;
+  text-align: center;
+}
+
+.teamsobre{
+  margin-top: 20px;
+  justify-items: center;
+}
+.ulsobre {
+  list-style-type: none;
+  padding: 0;
+  justify-items: center;
+}
+
+.ulsobre .listsobre {
+  background-color: #e2dee5;
+  color: rgb(8, 1, 1);
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.ulsobre .listsobre:hover {
+  background-color: #a866e2;
+}
