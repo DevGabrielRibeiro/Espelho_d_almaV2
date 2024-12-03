@@ -90,15 +90,11 @@
                     const idUser = userData.prof?.id_profissional || userData.user?.id_aluno;
                     let isAluno = false; // Variável para verificar se o usuário é um aluno
 
-
                     if(userData.user?.id_aluno) {
                         isAluno = true;
                     }
                   
                     fetchData(idUser, isAluno);
-                
-            
-                   
                     // Exibe a mensagem de boas-vindas
                     document.getElementById('welcome-message').style.display = 'block';
                     document.getElementById('welcome-text').textContent = `Olá, ${username}!`;
@@ -127,24 +123,14 @@
 
         // Função para buscar os dados dos profissionais
         function fetchData(userId, isAluno) {  // Adicionando o id no endpoint ou como parâmetro, se necessário
-            // Suponha que você tenha o id do profissional (id_profissional) depois de decodificar o JWT  // Exemplo de id de profissional obtido após decodificar o JWT
-
-
             let url = ""
-            // Monta a URL com o id_profissional como parâmetro de caminho  
-
             if(isAluno === false) {
-                console.log("AQUIIIIIII");
+              
                  url = `http://localhost:3000/api/agendamento/all/${userId}`;
-            } else {
-                console.log("AQUI");
-                 url = `http://localhost:3000/api/agendamento/aluno/${userId}`;
+                } else {
+                    
+                    url = `http://localhost:3000/api/agendamento/aluno/${userId}`;         
             }
-           
-
-            console.log(isAluno);
-            console.log(url);
-
             fetch(url, {
                 method: 'GET',  // Método GET, sem corpo
                 headers: {
@@ -156,14 +142,14 @@
                     // Aqui você pode tratar os dados recebidos da API
                     const agendamento = data.agendamento.createAgendamento;  // Exemplo: Dados dos profissionais retornados pela API
                     // Chama a função para obter as unidades e gerar os cards
-                    renderCards(agendamento);
+                    renderCards(agendamento, isAluno);
                 })
                 .catch(error => console.error('Erro ao buscar os dados dos profissionais:', error));
 
         }
 
         // Função para gerar os cards com unidades
-        function renderCards(agendamento) {
+        function renderCards(agendamento, isAluno) {
             const container = document.getElementById('cards-container');
            
             container.innerHTML = '';  // Limpa o conteúdo anterior (se houver)
@@ -176,6 +162,7 @@
          }
             // Caso contrário, renderiza os cards
             agendamento.forEach(agend => {
+            
                 const card = `
             <div class="card mb-2">
                 <div class="row no-gutters" id="card">
@@ -184,11 +171,12 @@
                             <h5 class="card-title">${agend.nome_profissional}</h5>
                             <p class="card-text-agend"><strong>Nome do aluno: </strong>${agend.nome_aluno}</p>
                             <p class="card-text-agend"><strong>Unidade do atendimento: </strong>${agend.nome_unidade}</p>
-                            <p class="card-text-agend"><strong>Dia do atendimento:</strong> ${agend.dia_agendamento}</p>
+                            <p class="card-text-agend"><strong>Dia do atendimento:</strong> ${agend.dia_agendamento.split("T", 1)}</p>
                             <p class="card-text-agend"><strong>Horario do atendimento:</strong> ${agend.horario_agendamento}</p>
                             <p class="card-text-agend"><strong>Status:</strong> ${agend.status_agendamento}</p>
-                            <div class="btn-agendamento mt-3">
+                            <div class="btn-agendamento mt-3" id="btn-agend">
                                 <button type="button" class="btn btn-primary" id="btn-confirmar-agend">Confirmar Agendamento</button>
+                                <button type="button" class="btn btn-primary" id="btn-cancelar-agend">Cancelar Agendamento</button>
                             </div>
                         </div>
                     </div>
@@ -196,6 +184,11 @@
             </div>
         `;
                 container.innerHTML += card;  // Adiciona o card gerado ao container
+
+                if(isAluno === true) {
+                    document.getElementById('btn-confirmar-agend').style.display = 'none';
+                    document.getElementById('btn-cancelar-agend').style.display = 'none';
+                }
             });
         }
 

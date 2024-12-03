@@ -305,55 +305,37 @@ footer {
   color: #455a64; /* Cor do texto do rodapé */
 }
      
-
-
-
-
-
-
-
-.bodysobre {
-  font-family: Arial, sans-serif;
-}  
-
-.containersobre {
-  max-width: 800px;
-  margin: 50px auto;
-  background: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(14, 1, 1, 0.1);
+/* Centralizando os botões */
+.btn-agendamento {
+  display: flex;
+  justify-content: center; /* Alinha os botões ao centro */
+  gap: 10px; /* Espaçamento entre os botões */
+  margin-top: 15px; /* Espaçamento superior para os botões */
 }
 
-.h1sobre, .h2sobre {
-  text-align: center;
-  color: #a866e2;
+/* Garantindo que os botões tenham um tamanho adequado */
+.btn {
+  margin: 0 auto;
 }
 
-.psobre{
-  line-height: 1.6;
-  color: #555;
-  text-align: center;
-}
-
-.teamsobre{
-  margin-top: 20px;
-  justify-items: center;
-}
-.ulsobre {
-  list-style-type: none;
-  padding: 0;
-  justify-items: center;
-}
-
-.ulsobre .listsobre {
-  background-color: #e2dee5;
-  color: rgb(8, 1, 1);
-  padding: 10px;
-  margin: 5px 0;
+#btn-confirmar-agend{
+  background-color: green !important;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
   border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.ulsobre .listsobre:hover {
-  background-color: #a866e2;
+#btn-cancelar-agend{
+  background-color: red !important;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  transition: 0.3s ease ;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
