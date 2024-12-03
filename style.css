@@ -339,3 +339,56 @@ footer {
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilo Geral do Contêiner */
+.containersobre {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco para contraste */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  text-align: center; /* Centraliza o texto */
+  font-family: 'Arial', sans-serif; /* Fonte padrão */
+  color: #333; /* Cor do texto */
+  margin-bottom: 200px;
+}
+
+/* Estilo do Título Principal */
+.h1sobre {
+  font-size: 2.5rem; /* Tamanho grande e destacado */
+  font-weight: bold; /* Negrito para dar ênfase */
+  color: #007bff; /* Azul para destaque */
+  margin-bottom: 20px;
+}
+
+/* Subtítulo e Descrição */
+.psobre {
+  font-size: 1.2rem;
+  line-height: 1.6; /* Melhor espaçamento entre linhas */
+  margin-top: 20px;
+  color: #555; /* Cinza suave */
+}
+
+/* Estilo para o Título da Seção do Time */
+.h2sobre {
+  font-size: 2rem; /* Um pouco menor que o título principal */
+  margin-top: 30px;
+  color: #495057; /* Cinza escuro */
+  font-weight: bold;
+}
+
+/* Estilo da Lista */
+.ulsobre {
+  list-style: none; /* Remove marcadores da lista */
+  padding: 0;
+  margin: 20px 0;
+}
+
+.listsobre {
+  font-size: 1.2rem; /* Tamanho de texto legível */
+  color: #007bff; /* Azul para consistência com os títulos */
+  font-weight: bold; /* Destaca os nomes */
+  margin: 10px 0;
+  transition: color 0.3s ease; /* Transição */
+}
