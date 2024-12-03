@@ -80,6 +80,56 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Função para decodificar o JWT e obter o nome do usuário
+    function decodificarJWT(token) {
+        const payload = token.split('.')[1]; // Pega a segunda parte do token (payload)
+        const decodedPayload = atob(payload); // Decodifica a base64
+        return JSON.parse(decodedPayload); // Converte de volta para objeto
+    }
+
+    // Função para verificar se o usuário está logado e exibir a mensagem
+    function verificarLogin() {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            try {
+                // Decodifica o token para obter as informações do usuário
+                const userData = decodificarJWT(token);
+                const username = userData.prof?.nome || userData.user?.nome; // Altere o campo conforme sua estrutura de token
+
+                // Exibe a mensagem de boas-vindas
+                document.getElementById('welcome-message').style.display = 'block';
+                document.getElementById('welcome-text').textContent = `Olá, ${username}!`;
+                document.getElementById('agenda').style.display = 'block';
+                document.getElementById('logoff').style.display = 'block';
+
+                // Oculta os links "Aluno", "Profissional" e "Entrar"
+                document.getElementById('login-link').style.display = 'none';
+                document.getElementById('aluno-link').style.display = 'none';
+                document.getElementById('prof-link').style.display = 'none';
+            } catch (error) {
+                console.error("Erro ao decodificar o token", error);
+            }
+        }
+    }
+
+    // Função para fazer logout
+    function logout() {
+        // Remove o token e outros dados do localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('username'); // Caso você também armazene o nome ou outros dados
+
+        // Redireciona para a página de login
+        window.location.href = 'login.html';
+    }
+
+    // Verifica o login quando a página carrega
+    window.onload = verificarLogin;
+
+    // Adiciona o evento de clique no botão "Sair"
+    document.getElementById('logout-link').addEventListener('click', logout);
+</script>
 </body>
 
 </html>
