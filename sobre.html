@@ -1,47 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css">
   <title>Quem Somos</title>
 </head>
-<body class="bodysobre">
-    <a href="index.html">Volta</a>
+
+<body>
+  <header class="bg-light p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="imgs/logo.png" alt="Logo">
+        <h1 class="ml-3"> <a href="index.html">Espelho D'Alma</a></h1>
+      </div>
+      <nav>
+        <ul class="nav" id="nav-links">
+          <li class="nav-item">
+            <a class="nav-link" href="agendamento.html">Agendamento</a>
+          </li>
+          <li class="nav-item" id="agenda" style="display: none;">
+            <a class="nav-link" href="myAgend.html">Meus agendamentos</a>
+          </li>
+          <li class="nav-item" id="login-link">
+            <a class="nav-link" href="login.html">Entrar</a>
+          </li>
+          <li class="nav-item" id="aluno-link">
+            <a class="nav-link" href="cadastro_aluno.html">Aluno</a>
+          </li>
+          <li class="nav-item" id="prof-link">
+            <a class="nav-link" href="cadastro_prof.html">Profissional</a>
+          </li>
+          <li class="nav-item" id="welcome-message" style="display: none;">
+            <span class="nav-link" id="welcome-text"></span>
+          </li>
+          <li class="nav-item" id="logoff" style="display: none;">
+            <a href="#" class="nav-link" id="logout-link">Sair</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="containersobre">
     <h1 class="h1sobre">Quem Somos</h1>
-    <h3>Somos um grupo de estudantes dedicados a aprender e desenvolver sistemas<br>enquanto exploramos o vasto universo da tecnologia.</p>
-    <p class="psobre"><strong>Nosso lema:</strong> "Aprender, compartilhar e transformar o futuro da tecnologia!"</p>
-    <div class="teamsobre">
-      <h2 class="h2sobre">Nosso Time</h2>
-      <ul class="ulsobre">
-        <li class="listsobre">Tharlinton Farias</li>
-        <li class="listsobre">Yasmin Marques</li>
-        <li class="listsobre">João Paulo</li>
-        <li class="listsobre">Guilherme Cavalcante</li>
-        <li class="listsobre">Gabriel Ribeiro</li>
-      </ul>
-    </div>
+    <h3>Somos um grupo de estudantes dedicados a aprender e desenvolver sistemas<br>enquanto exploramos o vasto universo
+      da tecnologia.</p>
+      <p class="psobre"><strong>Nosso lema:</strong> "Aprender, compartilhar e transformar o futuro da tecnologia!"</p>
+      <div class="teamsobre">
+        <h2 class="h2sobre">Nosso Time</h2>
+        <ul class="ulsobre">
+          <li class="listsobre">Tharlinton Farias</li>
+          <li class="listsobre">Yasmin Marques</li>
+          <li class="listsobre">João Paulo</li>
+          <li class="listsobre">Guilherme Cavalcante</li>
+          <li class="listsobre">Gabriel Ribeiro</li>
+        </ul>
+      </div>
   </div>
+  
   <footer class="bg-light p-3 text-center">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <p><i class="fas fa-envelope"></i> <a href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
-            </div>
-            <div class="col-md-4">
-                <p>&copy; 2024 Espelho D'Alma. Todos os direitos reservados.</p>
-            </div>
-            <div class="col-md-4">
-                <p><a href="#">Termos de Uso</a> | <a href="sobre.html">Equipe de desenvolvimento</a></p>
-            </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p><i class="fas fa-envelope"></i> <a href="mailto:contato@seudominio.com">contato@espelhodalma.com</a></p>
         </div>
+        <div class="col-md-4">
+          <p>&copy; 2024 Espelho D'Alma. Todos os direitos reservados.</p>
+        </div>
+        <div class="col-md-4">
+          <p><a href="#">Termos de Uso</a> | <a href="sobre.html">Equipe de desenvolvimento</a></p>
+        </div>
+      </div>
     </div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
