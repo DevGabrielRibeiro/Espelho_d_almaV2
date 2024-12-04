@@ -90,10 +90,10 @@
                     const idUser = userData.prof?.id_profissional || userData.user?.id_aluno;
                     let isAluno = false; // Variável para verificar se o usuário é um aluno
 
-                    if(userData.user?.id_aluno) {
+                    if (userData.user?.id_aluno) {
                         isAluno = true;
                     }
-                  
+
                     fetchData(idUser, isAluno);
                     // Exibe a mensagem de boas-vindas
                     document.getElementById('welcome-message').style.display = 'block';
@@ -124,10 +124,10 @@
         // Função para buscar os dados dos profissionais
         function fetchData(userId, isAluno) {  // Adicionando o id no endpoint ou como parâmetro, se necessário
             let url = ""
-            if(isAluno === false) {
-                    url = `http://localhost:3000/api/agendamento/all/${userId}`;
-                } else {
-                    url = `http://localhost:3000/api/agendamento/aluno/${userId}`;         
+            if (isAluno === false) {
+                url = `http://localhost:3000/api/agendamento/all/${userId}`;
+            } else {
+                url = `http://localhost:3000/api/agendamento/aluno/${userId}`;
             }
             fetch(url, {
                 method: 'GET',  // Método GET, sem corpo
@@ -149,16 +149,15 @@
         // Função para gerar os cards com unidades
         function renderCards(agendamento, isAluno) {
             const container = document.getElementById('cards-container');
-           
-            container.innerHTML = '';  // Limpa o conteúdo anterior (se houver)
 
-            // Verifica se o array agendamento está vazio
+            container.innerHTML = ''; // Limpa o conteúdo anterior (se houver)
+
             if (agendamento.length === 0) {
-             footer.classList.add('fixed-footer');  // Adiciona a classe para fixar o footer
-             container.innerHTML = '<p class="text-agendamento">Sem agendamentos no momento</p>';
-             return; // Interrompe a execução da função, pois não há agendamentos para mostrar:
-         }
-            // Caso contrário, renderiza os cards
+                footer.classList.add('fixed-footer'); // Adiciona a classe para fixar o footer
+                container.innerHTML = '<p class="text-agendamento">Sem agendamentos no momento</p>';
+                return; // Interrompe a execução da função, pois não há agendamentos para mostrar
+            }
+
             agendamento.forEach(agend => {
                 const card = `
             <div class="card mb-2">
@@ -172,28 +171,54 @@
                             <p class="card-text-agend"><strong>Horario do atendimento:</strong> ${agend.horario_agendamento}</p>
                             <p class="card-text-agend"><strong>Status:</strong> ${agend.status_agendamento}</p>
                             <div class="btn-agendamento mt-3" id="btn-agend">
-                                <button type="button" class="btn btn-primary" id="btn-confirmar-agend">Confirmar Agendamento</button>
-                                <button type="button" class="btn btn-primary" id="btn-cancelar-agend">Cancelar Agendamento</button>
+                                <button type="button" class="btn btn-primary" id="btn-confirmar-agend" onclick="atualizarStatusAgendamento(${agend.id_agendamento}, 'confirmado')">Confirmar Agendamento</button>
+                                <button type="button" class="btn btn-primary" id="btn-cancelar-agend" onclick="atualizarStatusAgendamento(${agend.id_agendamento}, 'cancelado')">Cancelar Agendamento</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-                container.innerHTML += card;  // Adiciona o card gerado ao container
-                if(isAluno === true) {
+                container.innerHTML += card; // Adiciona o card gerado ao container
+                if (isAluno === true) {
                     document.getElementById('btn-confirmar-agend').style.display = 'none';
                     document.getElementById('btn-cancelar-agend').style.display = 'none';
                 }
             });
+
+            if (agendamento.length > 1) {
+                footer.classList.remove('fixed-footer');
+            }
         }
 
+        async function atualizarStatusAgendamento(id_agendamento, novoStatus) {
+            try {
+                const response = await fetch('http://localhost:3000/api/agendamento/status', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id_agendamento, novoStatus }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    // Atualiza a interface (recarrega os agendamentos)
+                    window.location.reload()
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                alert(`Erro ao atualizar o agendamento: ${error.message}`);
+            }
+        }
 
         window.onload = function () {
             fetchData();    // Carrega os dados dos agendissionais
             verificarLogin();  // Verifica o login e exibe a interface de acordo
         };
-
         // Adiciona o evento de clique no botão "Sair"
         document.getElementById('logout-link').addEventListener('click', logout);
     </script>

@@ -152,7 +152,6 @@
           document.getElementById('agendarConsulta').style.display = 'none';
         }
 
-
         const card = `
           <div class="card mb-3">
             <div class="row no-gutters">
@@ -221,6 +220,7 @@
                       ${unitOptions}
                     </select>
                   </div>
+                  <p id="text-agendamento"></p>
                   <div class="btn-agendamento mt-3">
                   <button type="button" class="btn btn-primary" onclick="getFormData(${prof.id_profissional})" id="agendarConsulta">Agendar Consulta</button>
                  </div>
@@ -269,19 +269,22 @@
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Agendamento realizado com sucesso:', data);
-        alert('Consulta agendada com sucesso!');
+      const mensagemConfrim = document.getElementById('text-agendamento');
+      mensagemConfrim.textContent = 'Consulta solicitada';
+      mensagemConfrim.style.color = 'green';
       })
       .catch(error => {
-        console.error('Erro ao agendar consulta:', error);
-        alert('Erro ao agendar consulta. Tente novamente.');
+      const mensagemError = document.getElementById('text-agendamento');
+      mensagemError.textContent = 'Erro ao agendar consulta';
+      mensagemError.style.color = 'red';
       });
   } else {
-    alert('Por favor, selecione o dia, horário e unidade antes de agendar.');
+    const mensagemSelect = document.getElementById('text-agendamento');
+      mensagemSelect.textContent = 'Por favor, selecione o dia, horário e unidade antes de agendar.';
+      mensagemSelect.style.color = 'red';
   }
 }
 
-    
     // Evento de logout
     document.getElementById('logout-link').addEventListener('click', function (event) {
       event.preventDefault();
