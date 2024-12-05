@@ -272,11 +272,15 @@
       const mensagemConfrim = document.getElementById('text-agendamento');
       mensagemConfrim.textContent = 'Consulta solicitada';
       mensagemConfrim.style.color = 'green';
+      setTimeout(() => {
+            window.location.href = 'myAgend.html';  // Redireciona para outra página
+        }, 2000);
       })
       .catch(error => {
       const mensagemError = document.getElementById('text-agendamento');
       mensagemError.textContent = 'Erro ao agendar consulta';
       mensagemError.style.color = 'red';
+
       });
   } else {
     const mensagemSelect = document.getElementById('text-agendamento');

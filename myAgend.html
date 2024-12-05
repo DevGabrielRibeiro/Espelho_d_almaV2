@@ -156,49 +156,86 @@
                 footer.classList.add('fixed-footer'); // Adiciona a classe para fixar o footer
                 container.innerHTML = '<p class="text-agendamento">Sem agendamentos no momento</p>';
                 return; // Interrompe a execução da função, pois não há agendamentos para mostrar
-            }
+            } else
 
             agendamento.forEach(agend => {
-                const card = `
-            <div class="card mb-2">
-                <div class="row no-gutters" id="card">
-                    <div class="col-md-8">
-                        <div class="card-body" id="card-info">
-                            <h5 class="card-title">${agend.nome_profissional}</h5>
-                            <p class="card-text-agend"><strong>Nome do aluno: </strong>${agend.nome_aluno}</p>
-                            <p class="card-text-agend"><strong>Unidade do atendimento: </strong>${agend.nome_unidade}</p>
-                            <p class="card-text-agend"><strong>Dia do atendimento:</strong> ${agend.dia_agendamento.split("T", 1)}</p>
-                            <p class="card-text-agend"><strong>Horario do atendimento:</strong> ${agend.horario_agendamento}</p>
-                            <p class="card-text-agend"><strong>Status:</strong> ${agend.status_agendamento}</p>
-                            <div class="btn-agendamento mt-3" id="btn-agend">
-                                <button type="button" class="btn btn-primary" id="btn-confirmar-agend" onclick="atualizarStatusAgendamento(${agend.id_agendamento}, 'confirmado')">Confirmar Agendamento</button>
-                                <button type="button" class="btn btn-primary" id="btn-cancelar-agend" onclick="atualizarStatusAgendamento(${agend.id_agendamento}, 'cancelado')">Cancelar Agendamento</button>
+                const card = document.createElement('div');
+                card.classList.add('card', 'mb-2');
+                card.innerHTML = `
+                    <div class="row no-gutters" id="card">
+                        <div class="col-md-8">
+                            <div class="card-body" id="card-info">
+                                <h5 class="card-title">${agend.nome_profissional}</h5>
+                                <p class="card-text-agend"><strong>Nome do aluno: </strong>${agend.nome_aluno}</p>
+                                <p class="card-text-agend" id="email"><strong>Email do aluno:</strong> ${agend.email_aluno}</p>
+                                <p class="card-text-agend"><strong>Unidade do atendimento: </strong>${agend.nome_unidade}</p>
+                                <p class="card-text-agend"><strong>Dia do atendimento:</strong> ${agend.dia_agendamento.split("T", 1)}</p>
+                                <p class="card-text-agend"><strong>Horario do atendimento:</strong> ${agend.horario_agendamento}</p>
+                                <p class="card-text-agend"><strong>Status:</strong> ${agend.status_agendamento}</p>
+                                <div class="btn-agendamento mt-3" id="btn-agend">
+                                    <button type="button" class="btn btn-primary btn-confirmar-agend" id="btn-confirmar-agend">Confirmar Agendamento</button>
+                                    <button type="button" class="btn btn-primary btn-cancelar-agend" id="btn-cancelar-agend">Cancelar Agendamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
-                container.innerHTML += card; // Adiciona o card gerado ao container
-                if (isAluno === true) {
-                    document.getElementById('btn-confirmar-agend').style.display = 'none';
-                    document.getElementById('btn-cancelar-agend').style.display = 'none';
+                `;
+                card.querySelector('.btn-confirmar-agend').addEventListener('click', () => {
+                    atualizarStatusAgendamentoConfirm(agend.id_agendamento, 'Confirmado', agend);
+                });
+
+                card.querySelector('.btn-cancelar-agend').addEventListener('click', () => {
+                    atualizarStatusAgendamentoCancel(agend.id_agendamento, 'Cancelado', agend);
+                });
+
+                if (isAluno) {
+                    card.querySelector('.btn-confirmar-agend').style.display = 'none';
+                    card.querySelector('.btn-cancelar-agend').style.display = 'none';
                 }
+
+                container.appendChild(card);
+
             });
 
-            if (agendamento.length > 1) {
-                footer.classList.remove('fixed-footer');
-            }
+
         }
 
-        async function atualizarStatusAgendamento(id_agendamento, novoStatus) {
+        async function atualizarStatusAgendamentoConfirm(id_agendamento, novoStatus, agend) {
+            console.log(agend);
+
             try {
-                const response = await fetch('http://localhost:3000/api/agendamento/status', {
+                const response = await fetch('http://localhost:3000/api/agendamento/confirmado', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id_agendamento, novoStatus }),
+                    body: JSON.stringify({ id_agendamento, novoStatus, agend }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    // Atualiza a interface (recarrega os agendamentos)
+                    window.location.reload()
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                alert(`Erro ao atualizar o agendamento: ${error.message}`);
+            }
+        }
+
+        async function atualizarStatusAgendamentoCancel(id_agendamento, novoStatus, agend) {
+            console.log(agend);
+
+            try {
+                const response = await fetch('http://localhost:3000/api/agendamento/cancelado', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id_agendamento, novoStatus, agend }),
                 });
 
                 const data = await response.json();

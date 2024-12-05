@@ -82,11 +82,19 @@ function createUser(event) {
     })
     .then(data => {
         console.log('Usuário criado com sucesso:', data);
-        alert('Usuário cadastrado com sucesso!');
+        const mensagem = document.getElementById('mensagem-cad');
+        mensagem.textContent = 'Usuário cadastrado com sucesso!';
+        mensagem.style.color = 'green';
+        setTimeout(() => {
+            window.location.href = 'login.html';  // Redireciona para outra página
+        }, 2000);
     })
     .catch(error => {
         console.error('Erro:', error);
-        alert('Ocorreu um erro ao cadastrar o usuário.');
+        const mensagem = document.getElementById('mensagem-cad');
+        mensagem.textContent = 'Ocorreu um erro ao cadastrar o usuário.';
+        mensagem.style.color = 'red';
+
     });
 }
 
