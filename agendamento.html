@@ -239,9 +239,12 @@
   const dia = document.querySelector(`input[name="dia${profId}"]:checked`);
   const horario = document.querySelector(`input[name="horario${profId}"]:checked`);
   const unidade = document.getElementById("unitSelect").value; 
-  const prof = document.getElementById("nomeProf").value; 
+  const unidadeNome = document.getElementById("unitSelect").value; 
+  const prof = document.getElementById("nomeProf").textContent; 
   const token = localStorage.getItem('token');
   const tokenId = decodificarJWT(token)
+
+  console.log(prof , "PROF",  unidade, "UNID");
 
   // Verifica se as opções foram selecionadas
   if (dia && horario && unidade) {
@@ -253,8 +256,9 @@
       fk_id_aluno: tokenId.user?.id_aluno,  // TOKEN
       status_agendamento: "Confirmação pendente",
       email: tokenId.user?.email,
-      profissional: prof,
+      nome_profissional: prof,
       nome_aluno: tokenId.user?.nome,
+      nome_unidade: unidadeNome
     };
 
     console.log(data);
@@ -272,9 +276,9 @@
       const mensagemConfrim = document.getElementById('text-agendamento');
       mensagemConfrim.textContent = 'Consulta solicitada';
       mensagemConfrim.style.color = 'green';
-      setTimeout(() => {
-            window.location.href = 'myAgend.html';  // Redireciona para outra página
-        }, 2000);
+      // setTimeout(() => {
+      //       window.location.href = 'myAgend.html';  // Redireciona para outra página
+      //   }, 2000);
       })
       .catch(error => {
       const mensagemError = document.getElementById('text-agendamento');
